@@ -24,6 +24,11 @@ client.setUser(); // $ExpectError
 client.setUser({}); // $ExpectError
 client.setUser({identifier: 1}); // $ExpectError
 
+client.user = (req) => ({identifier: '123'});
+client.user = (req) => ({identifier: '123', fullName: req.user.fullName});
+client.user = (req) => {}; // $ExpectError
+client.user = (req) => ({}); // $ExpectError
+
 client.setVersion('123'); // $ExpectType Client
 
 client.setVersion(); // $ExpectError

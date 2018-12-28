@@ -119,7 +119,22 @@ declare namespace raygun {
         innerErrorFieldName?: string;
     }
 
+    interface CustomUserInfo extends RaygunUser {
+        isAnonymous?: boolean;
+    }
+
     class Client {
+        /**
+         * Allow customization of user info.
+         * e.g.,
+         *      let client: Client;
+         *      client.user = (req) => { ... }
+         *
+         * This deprecates setUser().
+         * See https://github.com/MindscapeHQ/raygun4node#affected-user-tracking
+         */
+        user: (req: { user: RaygunUser }) => CustomUserInfo;
+
         init(options: RaygunOptions): Client;
         setUser(user: RaygunUser): Client;
         setVersion(version: string): Client;
