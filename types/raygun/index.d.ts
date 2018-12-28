@@ -118,29 +118,29 @@ declare namespace raygun {
         reportColumnNumbers?: boolean;
         innerErrorFieldName?: string;
     }
+
+    class Client {
+        init(options: raygun.RaygunOptions): Client;
+        setUser(user: raygun.RaygunUser): Client;
+        setVersion(version: string): Client;
+        onBeforeSend(callback: raygun.OnBeforeSend): Client;
+        groupingKey(groupingKey: string): Client;
+        offline(): Client;
+        online(): Client;
+        send(
+            exception: Error | string | object,
+            customData?: raygun.KeyValueObject,
+            offlineStorageCallback?: (error?: Error) => void,
+            request?: raygun.RaygunRequest,
+            tags?: ReadonlyArray<string>
+        ): raygun.RaygunPayload;
+        expressHandler(
+            error: Error,
+            request: raygun.RaygunRequest,
+            res: any,
+            next: any
+        ): void;
+    }
 }
 
-declare class Client {
-    init(options: raygun.RaygunOptions): Client;
-    setUser(user: raygun.RaygunUser): Client;
-    setVersion(version: string): Client;
-    onBeforeSend(callback: raygun.OnBeforeSend): Client;
-    groupingKey(groupingKey: string): Client;
-    offline(): Client;
-    online(): Client;
-    send(
-        exception: Error | string | object,
-        customData?: raygun.KeyValueObject,
-        offlineStorageCallback?: (error?: Error) => void,
-        request?: raygun.RaygunRequest,
-        tags?: ReadonlyArray<string>
-    ): raygun.RaygunPayload;
-    expressHandler(
-        error: Error,
-        request: raygun.RaygunRequest,
-        res: any,
-        next: any
-    ): void;
-}
-
-export = Client;
+export = raygun;
