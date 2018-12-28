@@ -120,23 +120,23 @@ declare namespace raygun {
     }
 
     class Client {
-        init(options: raygun.RaygunOptions): Client;
-        setUser(user: raygun.RaygunUser): Client;
+        init(options: RaygunOptions): Client;
+        setUser(user: RaygunUser): Client;
         setVersion(version: string): Client;
-        onBeforeSend(callback: raygun.OnBeforeSend): Client;
+        onBeforeSend(callback: OnBeforeSend): Client;
         groupingKey(groupingKey: string): Client;
         offline(): Client;
         online(): Client;
         send(
             exception: Error | string | object,
-            customData?: raygun.KeyValueObject,
+            customData?: KeyValueObject,
             offlineStorageCallback?: (error?: Error) => void,
-            request?: raygun.RaygunRequest,
+            request?: RaygunRequest,
             tags?: ReadonlyArray<string>
-        ): raygun.RaygunPayload;
+        ): RaygunPayload;
         expressHandler(
             error: Error,
-            request: raygun.RaygunRequest,
+            request: RaygunRequest,
             res: any,
             next: any
         ): void;
